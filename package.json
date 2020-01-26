@@ -1,0 +1,31 @@
+{
+  "name": "thought-shower-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KJFreys1/thought-shower-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KJFreys1/thought-shower-backend/issues"
+  },
+  "engines": {
+    "node": "v13.1.0"
+  },
+  "homepage": "https://github.com/KJFreys1/thought-shower-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mocha": "^7.0.0",
+    "mongoose": "^5.8.9",
+    "supertest": "^4.0.2"
+  }
+}
