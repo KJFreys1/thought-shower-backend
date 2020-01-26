@@ -7,7 +7,7 @@ app.use(cors())
 app.use(parser.urlencoded({ extended: true} ))
 app.use(parser.json())
 
-const ideaController = require('./backend/controllers/Idea')
+const ideaController = require('./controllers/Idea')
 
 app.use('/ideas', ideaController)
 
