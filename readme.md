@@ -6,6 +6,6 @@ GET ideas: https://thought-shower.herokuapp.com/ideas
 
 POST ideas: https://thought-shower.herokuapp.com/ideas
 
-PUT ideas by id: https://thought-shower.herokuapp.com/ideas/:id
+PUT ideas by id: https://thought-shower.herokuapp.com/ideas/id/:id
 
-DELETE ideas by id: https://thought-shower.herokuapp.com/ideas/:id
+DELETE ideas by id: https://thought-shower.herokuapp.com/ideas/id/:id
