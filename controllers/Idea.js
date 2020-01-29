@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
 
 //@route        DELETE /ideas/id/:id
 //@desc         Removes idea by id
-router.delete('/id/:id', auth, (req, res) => {
+router.delete('/id/:id', (req, res) => {
     Idea.findByIdAndDelete(req.params.id).then(() => {
         Idea.find({}).then(items => {
             res.json(items)
