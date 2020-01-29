@@ -21,9 +21,10 @@ router.get('/id/:id', (req, res) => {
     })
 })
 
-//@route        /POST /ideas
+//@route        POST /ideas
 //@desc         Adds a new idea
-router.post('/', auth, (req, res) => {
+router.post('/', (req, res) => {
+    console.log(req.body)
     Idea.create(req.body).then(() => {
         Idea.find({}).then(ideas => {
             res.json(ideas)
