@@ -1,0 +1,7 @@
+{
+    "mongoURI": "mongodb+srv://thoughtshower:KyleRayMike@cluster0-zt8vs.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "sl_myJwtSecret",
+    "jwtSession": {
+        "session": false
+    }
+}
