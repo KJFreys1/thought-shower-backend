@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
     "jwt-simple": "^0.5.6",
     "mocha": "^7.0.0",
     "mongoose": "^5.8.9",
+    "nodemon": "^2.0.2",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "supertest": "^4.0.2"
