@@ -7,7 +7,10 @@ const commentSchema = new Schema({
 })
 
 const ideaSchema = new Schema({
-    user: String,
+    user: {
+        type: String,
+        default: "annonymous"
+    },
     title: String,
     category: String,
     post: String,

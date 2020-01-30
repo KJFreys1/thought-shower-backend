@@ -8,9 +8,11 @@ const Comment = require('../models/User').Comment
 //@route        GET /ideas
 //@desc         Retrieves all ideas
 router.get('/', (req, res) => {
-    Idea.find({}).then(ideas => {
-        res.json(ideas)
-    })
+    Idea.find({})
+        .sort({date: -1})
+        .then(ideas => {
+            res.json(ideas)
+        })
 })
 
 //@route        GET /ideas/id/:id
@@ -24,11 +26,12 @@ router.get('/id/:id', (req, res) => {
 //@route        POST /ideas
 //@desc         Adds a new idea
 router.post('/', (req, res) => {
-    console.log(req.body)
     Idea.create(req.body).then(() => {
-        Idea.find({}).then(ideas => {
-            res.json(ideas)
-        })
+        Idea.find({})
+            .sort({date: -1})
+            .then(ideas => {
+                res.json(ideas)
+            })
     })
 })
 
