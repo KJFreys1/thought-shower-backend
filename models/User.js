@@ -47,8 +47,7 @@ const userSchema = new Schema({
     register_date: {
         type: Date,
         default: Date.now
-    },
-    ideas: [ideaSchema]
+    }
 })
 
 module.exports = {

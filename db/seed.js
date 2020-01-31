@@ -13,47 +13,22 @@ User.deleteMany({}).then(() => {
 
 function createData() {
     Idea.create({
-        user: "User123",
-        title: "First post",
-        category: "Computer Science",
-        post: "Hello world! My name is User 123 and I am happy to be here!",
+        user: "Admin",
+        title: "Start with a new idea!",
+        category: "New Beginings",
+        post: "You don't have to be a user to post new ideas or comments! However, if you want to like other people's posts, you'll need to sign up or login first.",
         likes: 0,
         likedBy: [],
         comments: []
     }).then(idea => {
         Promise.all([
             Comment.create({
-                user: "OtherUser",
-                message: "Hello User123!"
+                user: "Admin",
+                message: "Feel free to leave any feedback you'd like, so long as you're being respectful! :)"
             }),
             Comment.create({
-                user: "anonymous",
-                message: "hi"
-            })
-        ]).then(coms => {
-            coms.forEach(com => {
-                idea.comments.push(com)
-                com.save()
-            })
-            idea.save()
-            console.log("Created idea")
-        })
-    })
-
-    Idea.create({
-        user: "anonymous",
-        title: "Test post",
-        category: "Computer Science",
-        post: "This is a test to see if I still need all the reuired information in the creation of the model."
-    }).then(idea => {
-        Promise.all([
-            Comment.create({
-                user: "someUser",
-                message: "This is a good test!"
-            }),
-            Comment.create({
-                user: "Carl",
-                message: "hi I'm carl"
+                user: "Everyone",
+                message: "Welcome to Thought Shower!!"
             })
         ]).then(coms => {
             coms.forEach(com => {
