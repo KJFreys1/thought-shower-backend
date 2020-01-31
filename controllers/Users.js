@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const config = require('config')
 const jwt = require('jsonwebtoken')
 
-const User = require('../models/User')
+const User = require('../models/User').User
 
 router.get('/', (req, res) => {
     User.find({}).then(users => {

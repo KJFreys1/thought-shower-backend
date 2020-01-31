@@ -5,7 +5,9 @@ const config = require('config')
 const jwt = require('jsonwebtoken')
 const auth = require('../middleware/auth')
 
-const User = require('../models/User')
+const User = require('../models/User').User
+const Idea = require('../models/User').Idea
+const Comment = require('../models/User').Comment
 
 router.get('/', (req, res) => {
     User.find({}).then(users => {
@@ -13,6 +15,7 @@ router.get('/', (req, res) => {
     })
 })
 
+//Login
 router.post('/', (req, res) => {
     const { email, password } = req.body
     

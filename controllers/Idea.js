@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const auth = require('../middleware/auth')
 
 const Idea = require('../models/User').Idea
 const Comment = require('../models/User').Comment
@@ -39,9 +38,11 @@ router.post('/', (req, res) => {
 //@desc         Removes idea by id
 router.delete('/id/:id', (req, res) => {
     Idea.findByIdAndDelete(req.params.id).then(() => {
-        Idea.find({}).then(items => {
-            res.json(items)
-        })
+        Idea.find({})
+            .sort({date: -1})
+            .then(items => {
+                res.json(items)
+            })
     })
 })
 
@@ -52,9 +53,11 @@ router.put('/id/:id', (req, res) => {
         req.params.id,
         req.body
     ).then(() => {
-        Idea.find({}).then(ideas => {
-            res.json(ideas)
-        })
+        Idea.find({})
+            .sort({date: -1})
+            .then(ideas => {
+                res.json(ideas)
+            })
     })
 })
 
@@ -87,6 +90,47 @@ router.delete('/comments/:idid/:comid', (req, res) => {
     Idea.findById(req.params.idid).then(idea => {
         const filter = idea.comments.filter(arr => arr.id != req.params.comid)
         idea.comments = filter
+        idea.save()
+        res.json(idea)
+    })
+})
+
+//@route        POST /ideas/likes/:idid/:like
+//@desc         Finds idea with first parameter, then modifies it's likes
+//              and list of users who liked it
+router.post('/likes/:idid/:like', (req, res) => {
+    Idea.findById(req.params.idid).then(idea => {
+        const likeNum = idea.likes
+        const user = {
+            id: req.body._id,
+            liked: req.params.like === 'true' ? true : false
+        }
+
+        //Check for if this user already liked this post
+        const filter = idea.likedBy.filter(arr => arr.id === user.id)
+
+        //If filter comes back undefined, then user has NOT liked this post yet
+        if (!filter.length) {
+            idea.likedBy.push(user)
+            if (user.liked) {
+                idea.likes = likeNum + 1
+            } else {
+                idea.likes = likeNum - 1
+            }
+        } 
+        //If filter comes back defined, user has liked this post before
+        else {
+            //If this action is different than previous action, inverse to new action
+            if (filter[0].liked !== user.liked) {
+                const index = idea.likedBy.indexOf(filter[0])
+                idea.likedBy.splice(index, 1, user)
+                if (user.liked) {
+                    idea.likes = likeNum + 2
+                } else {
+                    idea.likes = likeNum - 2
+                }
+            }
+        }
         idea.save()
         res.json(idea)
     })

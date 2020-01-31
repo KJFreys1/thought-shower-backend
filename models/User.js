@@ -9,7 +9,11 @@ const commentSchema = new Schema({
 const ideaSchema = new Schema({
     user: {
         type: String,
-        default: "annonymous"
+        default: "anonymous"
+    },
+    uid: {
+        type: String,
+        default: ''
     },
     title: String,
     category: String,
@@ -18,10 +22,7 @@ const ideaSchema = new Schema({
         type: Number,
         default: 0
     },
-    favorites: {
-        type: Number,
-        default: 0
-    },
+    likedBy: [],
     date: {
         type: Date,
         default: Date.now

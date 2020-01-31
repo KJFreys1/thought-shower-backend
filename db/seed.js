@@ -1,10 +1,13 @@
 const Idea = require('../models/User').Idea
 const Comment = require('../models/User').Comment
+const User = require('../models/User').User
 
-Idea.deleteMany({}).then(() => {
-    Comment.deleteMany({}).then(() => {
-        console.log('Seed deleted, creating new data now...')
-        createData()
+User.deleteMany({}).then(() => {
+    Idea.deleteMany({}).then(() => {
+        Comment.deleteMany({}).then(() => {
+            console.log('Seed deleted, creating new data now...')
+            createData()
+        })
     })
 })
 
@@ -15,7 +18,7 @@ function createData() {
         category: "Computer Science",
         post: "Hello world! My name is User 123 and I am happy to be here!",
         likes: 0,
-        favorites: 0,
+        likedBy: [],
         comments: []
     }).then(idea => {
         Promise.all([
